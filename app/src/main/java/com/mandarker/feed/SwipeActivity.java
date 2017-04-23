@@ -51,12 +51,6 @@ public class SwipeActivity extends AppCompatActivity {
 
         ImageView image = (ImageView) findViewById(R.id.imageView1);
         Picasso.with(this).load(restaurants[index].getImages().get(0)).into(image);
-        TextView text = (TextView) findViewById(R.id.name);
-        text.setText(restaurants[index].getName());
-        text = (TextView) findViewById(R.id.price);
-        text.setText(restaurants[index].getPrice());
-        text = (TextView) findViewById(R.id.rating);
-        text.setText("" + restaurants[index].getRating());
 
         ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
 

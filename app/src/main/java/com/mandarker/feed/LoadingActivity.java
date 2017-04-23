@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 
 import com.mandarker.feed.classes.Restaurant;
+import com.mandarker.feed.classes.RestaurantImageParser;
 import com.yelp.clientlib.connection.YelpAPI;
 import com.yelp.clientlib.connection.YelpAPIFactory;
 import com.yelp.clientlib.entities.Business;
@@ -31,6 +32,7 @@ public class LoadingActivity extends AppCompatActivity {
     Restaurant[] restaurants;
     ArrayList<Business> businessList;
     int numOfResponse;
+    RestaurantImageParser imgParser;
 
 
     @Override
@@ -59,6 +61,8 @@ public class LoadingActivity extends AppCompatActivity {
             params.put("term", "chicken");
             CoordinateOptions coordinate = CoordinateOptions.builder().latitude(37.44).longitude(-122.23).build();
             call = yelpAPI.search(coordinate, params);
+            imgParser = new RestaurantImageParser();
+
             response = null;
             try {
                 response = call.execute();
@@ -66,6 +70,7 @@ public class LoadingActivity extends AppCompatActivity {
                 e.printStackTrace();
             }
             if (response != null) {
+
                 businessList = response.body().businesses();
                 numOfResponse = businessList.size();
                 restaurants = new Restaurant[numOfResponse];
@@ -77,7 +82,7 @@ public class LoadingActivity extends AppCompatActivity {
                    temp.setPhone(businessList.get(i).displayPhone());
                    temp.setRating((float)(double)businessList.get(i).rating());
                    temp.setLocation(businessList.get(i).location().address().get(0) + businessList.get(i).location().city() + businessList.get(i).location().city() + businessList.get(i).location().postalCode());
-
+                    temp.setPictureUrl(imgParser.getOriginal(businessList.get(i).imageUrl()));
                     String url = businessList.get(i).url();
 
                     for (int j = 0; j < url.length(); j++){
