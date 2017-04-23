@@ -69,6 +69,8 @@ public class SwipeActivity extends AppCompatActivity {
         params = new HashMap<>();
         params.put("term", "rice");
         new FetchData().execute();
+
+
     }
 
     public class FetchData extends AsyncTask<String, String, String> {
@@ -88,6 +90,21 @@ public class SwipeActivity extends AppCompatActivity {
                     System.out.println("Business name: " + businessList.get(i).getName());
                 }
                 System.out.println("Number of responses: " + numOfResponse + " ");
+            }
+
+            restaurants = new Restaurant[businessList.size()];
+
+            for (int i = 0; i < restaurants.length; i++){
+                restaurants[i].setClosed(businessList.get(i).getIsClosed());
+                restaurants[i].setDistance((float) businessList.get(i).getDistance());
+                restaurants[i].setLocation(businessList.get(i).getLocation().getAddress1(), businessList.get(i).getLocation().getAddress2(),
+                        businessList.get(i).getLocation().getAddress3(), businessList.get(i).getLocation().getCity(), businessList.get(i).getLocation().getState(), businessList.get(i).getLocation().getZipCode());
+                restaurants[i].setName(businessList.get(i).getName());
+                restaurants[i].setPhone(businessList.get(i).getPhone());
+                restaurants[i].setPrice(businessList.get(i).getPrice());
+                restaurants[i].setRating((float)businessList.get(i).getRating());
+                restaurants[i].setReviewCount(businessList.get(i).getReviewCount());
+                restaurants[i].setUrl(businessList.get(i).getUrl());
             }
             return null;
         }
