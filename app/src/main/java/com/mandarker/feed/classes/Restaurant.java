@@ -20,7 +20,7 @@ public class Restaurant implements Parcelable {
     private String location;
     private String url;
     private String pictureUrl;
-    private List<String> images;
+
 
     public Restaurant(){
 
@@ -145,17 +145,7 @@ public class Restaurant implements Parcelable {
 
     public void setUrl(String url) {
         this.url = url;
-        System.out.println(url);
-        this.pictureUrl = url.replace("/biz", "/biz_photos");
-        System.out.println(pictureUrl);
-        this.pictureUrl = pictureUrl + "?tab=food";
-        System.out.println(pictureUrl);
-        ArrayList<String> images = RestaurantImageParser.getPictures(pictureUrl);
 
-        for (int i = 0; i < 4; i++){
-            if (images.get(i) != null && !images.get(i).equals(""))
-                this.images.add(images.get(i));
-        }
     }
 
     public String getPictureUrl(){
@@ -166,11 +156,5 @@ public class Restaurant implements Parcelable {
         this.pictureUrl = str;
     }
 
-    public List<String> getImages() {
-        return images;
-    }
 
-    public void setImages(List<String> images) {
-        this.images = images;
-    }
 }
