@@ -44,14 +44,16 @@ public class SwipeActivity extends AppCompatActivity {
             index = bundle.getInt("index");
         }
 
+        System.out.println("hello2");
+        System.out.println(restaurants[index].getImages().get(0));
+        System.out.println("hello");
+
         ImageView image = (ImageView) findViewById(R.id.imageView1);
         Picasso.with(this).load(restaurants[index].getImages().get(0)).into(image);
         TextView text = (TextView) findViewById(R.id.name);
         text.setText(restaurants[index].getName());
         text = (TextView) findViewById(R.id.price);
         text.setText(restaurants[index].getPrice());
-        text = (TextView) findViewById(R.id.distance);
-        text.setText("" + restaurants[index].getDistance());
         text = (TextView) findViewById(R.id.rating);
         text.setText("" + restaurants[index].getRating());
 

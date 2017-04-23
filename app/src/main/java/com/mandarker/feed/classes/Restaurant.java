@@ -3,6 +3,7 @@ package com.mandarker.feed.classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -13,13 +14,12 @@ public class Restaurant implements Parcelable {
 
     private String name;
     private float rating;
-    private int reviewCount;
     private String price;
     private String phone;
     private boolean isClosed;
     private String location;
-    private float distance;
     private String url;
+    private String pictureUrl;
     private List<String> images;
 
     public Restaurant(){
@@ -29,12 +29,10 @@ public class Restaurant implements Parcelable {
     public Restaurant(String name, float rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
         this.name = name;
         this.rating = rating;
-        this.reviewCount = reviewCount;
         this.price = price;
         this.phone = phone;
         this.isClosed = isClosed;
         this.location = location;
-        this.distance = distance;
         this.url = url;
     }
 
@@ -42,20 +40,15 @@ public class Restaurant implements Parcelable {
         String[] strings = new String[5];
         in.readStringArray(strings);
 
-        float[] floats = new float[2];
-        in.readFloatArray(floats);
-
         boolean[] booleans = new boolean[1];
         in.readBooleanArray(booleans);
 
         name = strings[0];
-        rating = floats[0];
-        reviewCount = in.readInt();
+        rating = in.readFloat();
         price = strings[1];
         phone = strings[2];
         isClosed = booleans[0];
         location = strings[3];
-        distance = floats[1];
         url = strings[4];
     }
 
@@ -79,9 +72,8 @@ public class Restaurant implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeStringArray(new String[]{this.name, this.price, this.phone, this.location, this.url});
-        parcel.writeInt(this.reviewCount);
         parcel.writeBooleanArray(new boolean[]{this.isClosed});
-        parcel.writeFloatArray(new float[]{this.rating, this.distance});
+        parcel.writeFloat(this.rating);
     }
 
     public String getName() {
@@ -98,14 +90,6 @@ public class Restaurant implements Parcelable {
 
     public void setRating(float rating) {
         this.rating = rating;
-    }
-
-    public int getReviewCount() {
-        return reviewCount;
-    }
-
-    public void setReviewCount(int reviewCount) {
-        this.reviewCount = reviewCount;
     }
 
     public String getPrice() {
@@ -140,15 +124,11 @@ public class Restaurant implements Parcelable {
         this.location = location;
     }
 
-    public void setLocation(String address1, String address2, String address3, String city, String state, String zipCode) {
+    public void setLocation(String address, String city, String state, String zipCode) {
         String location = "";
         
-        if (!address1.equals(""))  
-            location += address1 + " ";
-        if (!address2.equals(""))
-            location += address2 + " ";
-        if (!address3.equals(""))
-            location += address3 + ", ";
+        if (!address.equals(""))
+            location += address + " ";
         if (!city.equals(""))
             location += city + ", ";
         if (!state.equals(""))
@@ -159,27 +139,31 @@ public class Restaurant implements Parcelable {
         this.location = location;
     }
 
-    public float getDistance() {
-        return distance;
-    }
-
-    public void setDistance(float distance) {
-        this.distance = distance;
-    }
-
     public String getUrl() {
         return url;
     }
 
     public void setUrl(String url) {
         this.url = url;
-
-        List<String> images = RestaurantImageParser.getPictures(url);
+        System.out.println(url);
+        this.pictureUrl = url.replace("/biz", "/biz_photos");
+        System.out.println(pictureUrl);
+        this.pictureUrl = pictureUrl + "?tab=food";
+        System.out.println(pictureUrl);
+        ArrayList<String> images = RestaurantImageParser.getPictures(pictureUrl);
 
         for (int i = 0; i < 4; i++){
             if (images.get(i) != null && !images.get(i).equals(""))
-            this.images.add(images.get(i));
+                this.images.add(images.get(i));
         }
+    }
+
+    public String getPictureUrl(){
+        return pictureUrl;
+    }
+
+    public void setPictureUrl(String str) {
+        this.pictureUrl = str;
     }
 
     public List<String> getImages() {

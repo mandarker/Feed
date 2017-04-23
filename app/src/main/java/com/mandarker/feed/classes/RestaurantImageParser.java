@@ -20,18 +20,19 @@ public class RestaurantImageParser {
                 break;
             }
         }
-        return url.substring(0, i+1) + "0.jpeg";
+        return url.substring(0, i+1) + "o.jpg";
     }
 
-    public static List<String> getPictures(String html){
+    public static ArrayList<String> getPictures(String html){
         Document document = Jsoup.parse(html);
         Elements images = document.select("div.photo-box > img");
-        List<String> urls = new ArrayList<>();
+        ArrayList<String> urls = new ArrayList<String>();
+        System.out.println("dog");
         String src;
-
-
+        System.out.println(images.size());
         for (Element image: images){
             src = image.attr("src");
+            System.out.println(src);
             if (src != null && !src.equals(""))
                 urls.add(getOriginal(src));
         }

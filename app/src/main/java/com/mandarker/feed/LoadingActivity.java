@@ -68,29 +68,35 @@ public class LoadingActivity extends AppCompatActivity {
             if (response != null) {
                 businessList = response.body().businesses();
                 numOfResponse = businessList.size();
-                //restaurants = new Restaurant[numOfResponse];
+                restaurants = new Restaurant[numOfResponse];
+                Intent intent = new Intent(LoadingActivity.this, SwipeActivity.class);
                 Restaurant temp;
                 for (int i = 0; i < numOfResponse; i++) {
-                    temp = new Restaurant();
-                    temp.setName(businessList.get(i).name());
-                    restaurants[i] = temp;
-                    System.out.println(restaurants[i].getName());
+                   temp = new Restaurant();
+                   temp.setName(businessList.get(i).name());
+                   temp.setPhone(businessList.get(i).displayPhone());
+                   temp.setRating((float)(double)businessList.get(i).rating());
+                   temp.setLocation(businessList.get(i).location().address().get(0) + businessList.get(i).location().city() + businessList.get(i).location().city() + businessList.get(i).location().postalCode());
+
+                    String url = businessList.get(i).url();
+
+                    for (int j = 0; j < url.length(); j++){
+                        if (url.charAt(j) == '?')
+                            url = url.substring(0, j);
+                    }
+
+                    temp.setUrl(url);
+
+                   restaurants[i] = temp;
+
+                   intent.putExtra("restaurant" + i, restaurants[i]);
                 }
 
-                System.out.println(restaurants[0].getName());
-                /*
-                for (int i = 0; i < numOfResponse; i++){
-                    //restaurants[i].setClosed(businessList.get(i).isClosed());
-                   // restaurants[i].setDistance((float) businessList.get(i).getDistance());
-                    restaurants[i].setLocation(businessList.get(i).getLocation().getAddress1(), businessList.get(i).getLocation().getAddress2(),
-                            businessList.get(i).getLocation().getAddress3(), businessList.get(i).getLocation().getCity(), businessList.get(i).getLocation().getState(), businessList.get(i).getLocation().getZipCode());
-                    restaurants[i].setName(businessList.get(i).getName());
-                    restaurants[i].setPhone(businessList.get(i).getPhone());
-                    restaurants[i].setPrice(businessList.get(i).getPrice());
-                    restaurants[i].setRating((float)businessList.get(i).getRating());
-                    restaurants[i].setReviewCount(businessList.get(i).getReviewCount());
-                    restaurants[i].setUrl(businessList.get(i).getUrl());
-            }*/
+                System.out.println(businessList.get(0).url());
+
+                intent.putExtra("amount", numOfResponse);
+
+                startActivity(intent);
 
             }
             return null;

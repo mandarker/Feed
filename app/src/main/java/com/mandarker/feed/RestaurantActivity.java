@@ -38,12 +38,8 @@ public class RestaurantActivity extends AppCompatActivity {
         text.setText(restaurant.getName());
         text = (TextView) findViewById(R.id.price);
         text.setText(restaurant.getPrice());
-        text = (TextView) findViewById(R.id.distance);
-        text.setText("" + restaurant.getDistance());
         text = (TextView) findViewById(R.id.rating);
         text.setText("" + restaurant.getRating());
-        text = (TextView) findViewById(R.id.reviewCount);
-        text.setText("" + restaurant.getReviewCount());
         text = (TextView) findViewById(R.id.address);
         text.setText("" + restaurant.getLocation());
         text = (TextView) findViewById(R.id.phone);
