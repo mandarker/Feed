@@ -36,10 +36,6 @@ public class LoadingActivity extends AppCompatActivity {
     ArrayList<Business> businessList;
     int numOfResponse;
     RestaurantImageParser imgParser;
-    LocationManager lm = (LocationManager)getSystemService(this.LOCATION_SERVICE);
-    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-    double longitude = location.getLongitude();
-    double latitude = location.getLatitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
