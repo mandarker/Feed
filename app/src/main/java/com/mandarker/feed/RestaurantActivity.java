@@ -15,15 +15,14 @@ public class RestaurantActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_restaurant);
 
-        //Restaurant restaurant;
-        Restaurant restaurant = new Restaurant("Morgan's Mackerals", (float) 0.0, 2, "$$$$$$", "+5555555555", true, "nowhere", 0, "https://www.yelp.com/biz/steep-creamery-and-tea-san-francisco");
+        Restaurant restaurant = new Restaurant();
+        //Restaurant restaurant = new Restaurant("Morgan's Mackerals", (float) 0.0, 2, "$$$$$$", "+5555555555", true, "nowhere", 0, "https://www.yelp.com/biz/steep-creamery-and-tea-san-francisco");
 
-        /*
+
         Bundle bundle = this.getIntent().getExtras();
-        if (bundle != null){
+        if (bundle != null) {
             restaurant = bundle.getParcelable("restaurant");
         }
-        */
 
         ImageView image = (ImageView) findViewById(R.id.imageView1);
         Picasso.with(this).load(restaurant.getPictureUrl()).into(image);
