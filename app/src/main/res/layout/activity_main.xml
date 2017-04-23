@@ -26,7 +26,7 @@
         app:layout_constraintRight_toLeftOf="@+id/searchButton"
         app:layout_constraintTop_toTopOf="parent"
         android:layout_marginStart="16dp"
-        app:layout_constraintVertical_bias="0.479" />
+        app:layout_constraintVertical_bias="0.516" />
 
     <Button
         android:id="@+id/searchButton"
