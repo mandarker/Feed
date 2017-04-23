@@ -26,8 +26,7 @@ public class MainActivity extends AppCompatActivity {
         EditText editText = (EditText) findViewById(R.id.searchEditText);
         String category = editText.getText().toString();
 
-
-
+        intent.putExtra("category", category);
 
         //start new activity
         startActivity(intent);

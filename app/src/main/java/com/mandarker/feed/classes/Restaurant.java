@@ -14,11 +14,8 @@ public class Restaurant implements Parcelable {
 
     private String name;
     private float rating;
-    private String price;
     private String phone;
-    private boolean isClosed;
     private String location;
-    private String url;
     private String pictureUrl;
 
 
@@ -26,30 +23,21 @@ public class Restaurant implements Parcelable {
 
     }
 
-    public Restaurant(String name, float rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
+    public Restaurant(String name, float rating, int reviewCount, String phone, String location, float distance) {
         this.name = name;
         this.rating = rating;
-        this.price = price;
         this.phone = phone;
-        this.isClosed = isClosed;
         this.location = location;
-        this.url = url;
     }
 
     protected Restaurant(Parcel in) {
-        String[] strings = new String[5];
+        String[] strings = new String[3];
         in.readStringArray(strings);
-
-        boolean[] booleans = new boolean[1];
-        in.readBooleanArray(booleans);
 
         name = strings[0];
         rating = in.readFloat();
-        price = strings[1];
-        phone = strings[2];
-        isClosed = booleans[0];
-        location = strings[3];
-        url = strings[4];
+        phone = strings[1];
+        location = strings[2];
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -71,8 +59,7 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{this.name, this.price, this.phone, this.location, this.url});
-        parcel.writeBooleanArray(new boolean[]{this.isClosed});
+        parcel.writeStringArray(new String[]{this.name, this.phone, this.location});
         parcel.writeFloat(this.rating);
     }
 
@@ -92,14 +79,6 @@ public class Restaurant implements Parcelable {
         this.rating = rating;
     }
 
-    public String getPrice() {
-        return price;
-    }
-
-    public void setPrice(String price) {
-        this.price = price;
-    }
-
     public String getPhone() {
         return phone;
     }
@@ -108,13 +87,6 @@ public class Restaurant implements Parcelable {
         this.phone = phone;
     }
 
-    public boolean isClosed() {
-        return isClosed;
-    }
-
-    public void setClosed(boolean closed) {
-        isClosed = closed;
-    }
 
     public String getLocation() {
         return location;
@@ -139,13 +111,7 @@ public class Restaurant implements Parcelable {
         this.location = location;
     }
 
-    public String getUrl() {
-        return url;
-    }
 
-    public void setUrl(String url) {
-        this.url = url;
-    }
 
     public String getPictureUrl(){
         return pictureUrl;

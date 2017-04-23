@@ -1,6 +1,7 @@
 package com.mandarker.feed;
 
 
+import android.content.Context;
 import android.os.AsyncTask;
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +11,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
+import android.widget.Toast;
 
 import com.mandarker.feed.classes.OnSwipeTouchListener;
 import com.mandarker.feed.classes.Restaurant;
@@ -45,7 +47,7 @@ public class SwipeActivity extends AppCompatActivity {
             index = bundle.getInt("index");
         }
 
-        ImageView image = (ImageView) findViewById(R.id.imageView1);
+        ImageView image = (ImageView) findViewById(R.id.imageView);
         Picasso.with(this).load(restaurants[index].getPictureUrl()).into(image);
     }
 
@@ -59,17 +61,29 @@ public class SwipeActivity extends AppCompatActivity {
 
     //no is pressed
     public void noIsPressed(View view) {
-        index++;
-        Intent intent = SwipeActivity.this.getIntent();
-        intent.putExtra("index", index);
+        if (index < restaurants.length - 1) {
+            index++;
+            Intent intent = SwipeActivity.this.getIntent();
+            intent.putExtra("index", index);
 
-        for (int i = 0; i < restaurants.length; i++){
-            intent.putExtra("restaurant" + i, restaurants[i]);
+            for (int i = 0; i < restaurants.length; i++) {
+                intent.putExtra("restaurant" + i, restaurants[i]);
+            }
+
+            intent.putExtra("amount", restaurants.length);
+
+            startActivity(intent);
+
+            finish();
         }
+        else{
+            Context context = getApplicationContext();
+            CharSequence text = "You have run out of no's!";
+            int duration = Toast.LENGTH_SHORT;
 
-        intent.putExtra("amount", restaurants.length);
-
-        startActivity(intent);
+            Toast toast = Toast.makeText(context, text, duration);
+            toast.show();
+        }
     }
 }
 
