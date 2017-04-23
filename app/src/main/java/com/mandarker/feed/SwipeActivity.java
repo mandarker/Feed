@@ -2,13 +2,19 @@ package com.mandarker.feed;
 
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.ViewGroup;
 
+import com.mandarker.feed.classes.OnSwipeTouchListener;
+import com.mandarker.feed.classes.Restaurant;
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
 
 public class SwipeActivity extends AppCompatActivity {
     YelpFusionApiFactory apiFactory = new YelpFusionApiFactory();
     YelpFusionApi yelpFusionApi;
+
+    Restaurant[] restaurants;
+    private int index;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -19,6 +25,18 @@ public class SwipeActivity extends AppCompatActivity {
         }
         catch(Exception e){}
 
+        index = 0;
 
+        ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
+
+        viewGroup.setOnTouchListener(new OnSwipeTouchListener(SwipeActivity.this){
+            public void onSwipeLeft(){
+                index++;
+            }
+            public void onSwipeRight(){
+                index++;
+            }
+        });
     }
+
 }
