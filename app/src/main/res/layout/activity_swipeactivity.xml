@@ -9,57 +9,75 @@
     <!--android:background="#ff7300"-->
 
 
-    <ImageView
-        android:id="@+id/frame"
-        android:layout_width="310dp"
-        android:layout_height="310dp"
-        app:srcCompat="@android:color/holo_blue_light"
-        app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginTop="16dp"
-        android:layout_marginLeft="16dp"
-        app:layout_constraintLeft_toLeftOf="parent"
-        android:layout_marginRight="16dp"
-        app:layout_constraintRight_toRightOf="parent"
-        app:layout_constraintHorizontal_bias="0.492"
-        android:layout_marginBottom="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/linearLayout" />
-
-    <ImageView
-        android:id="@+id/imageView"
-        android:layout_width="276dp"
-        android:layout_height="276dp"
-        app:srcCompat="@mipmap/ic_launcher"
-        tools:layout_editor_absoluteX="67dp"
-        tools:layout_editor_absoluteY="124dp" />
-
     <LinearLayout
-        android:layout_width="410dp"
-        android:layout_height="138dp"
-        android:layout_weight="1.40"
-        android:orientation="horizontal"
-        tools:layout_editor_absoluteX="0dp"
-        tools:layout_editor_absoluteY="520dp"
-        android:id="@+id/linearLayout">
+        android:layout_width="388dp"
+        android:layout_height="531dp"
+        android:layout_marginBottom="16dp"
+        android:layout_marginLeft="16dp"
+        android:layout_marginRight="16dp"
+        android:layout_marginTop="16dp"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintHorizontal_bias="0.555"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-        <Button
-            android:id="@+id/no"
+        <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#ff0202"
-            android:onClick="noIsPressed"
-            android:text="NO"
-            android:textSize="24sp" />
+            android:layout_height="396dp"
+            tools:layout_editor_absoluteX="16dp"
+            tools:layout_editor_absoluteY="16dp">
 
-        <Button
-            android:id="@+id/yes"
+            <ImageView
+                android:id="@+id/frame"
+                android:layout_width="300dp"
+                android:layout_height="300dp"
+                android:layout_gravity="center"
+                app:srcCompat="?attr/colorPrimary"
+                tools:layout_editor_absoluteX="50dp"
+                tools:layout_editor_absoluteY="110dp" />
+
+            <ImageView
+                android:id="@+id/imageView"
+                android:layout_width="250dp"
+                android:layout_height="250dp"
+                android:layout_gravity="center"
+                app:srcCompat="@mipmap/ic_launcher"
+                tools:layout_editor_absoluteX="67dp"
+                tools:layout_editor_absoluteY="124dp" />
+
+        </FrameLayout>
+
+        <LinearLayout
+            android:id="@+id/linearLayout"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_weight="1"
-            android:background="#49d000"
-            android:onClick="yesIsPressed"
-            android:text="YES"
-            android:textSize="24sp" />
+            android:layout_height="110dp"
+            android:orientation="horizontal"
+            tools:layout_editor_absoluteX="0dp"
+            tools:layout_editor_absoluteY="520dp">
+
+            <Button
+                android:id="@+id/no"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ff0202"
+                android:onClick="noIsPressed"
+                android:text="NO"
+                android:textSize="24sp" />
+
+            <Button
+                android:id="@+id/yes"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#49d000"
+                android:onClick="yesIsPressed"
+                android:text="YES"
+                android:textSize="24sp" />
+
+        </LinearLayout>
 
     </LinearLayout>
 
