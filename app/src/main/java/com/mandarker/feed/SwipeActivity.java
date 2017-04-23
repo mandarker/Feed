@@ -11,10 +11,6 @@ import android.widget.EditText;
 
 import com.mandarker.feed.classes.OnSwipeTouchListener;
 import com.mandarker.feed.classes.Restaurant;
-import com.yelp.fusion.client.connection.YelpFusionApi;
-import com.yelp.fusion.client.connection.YelpFusionApiFactory;
-import com.yelp.fusion.client.models.Business;
-import com.yelp.fusion.client.models.SearchResponse;
 
 import java.io.IOException;
 import java.util.ArrayList;

@@ -1,7 +1,9 @@
 <resources>
     <string name="app_name">Feed</string>
-    <string name="appID">vj-9QeFhOHIJyLhg1uFrqA</string>
-    <string name="appSecret">HqSAQdKlkxBbUn67jpPUZcjNkGJw36HmDSNmtrnyznNAXsAKhdzhhmA9h0HGvdtJ</string>
+    <string name="consumerKey">UJ1a_feIexDlK-XN35ynwA</string>
+    <string name="consumerSecret">TLbRGlmBek8j8ZcnlR8X97ug48Q</string>
+    <string name ="token">tp8H0AAccrrzAcDT_YMKm8ZTUlD8IlbZ</string>
+    <string name ="tokenSecret">ZhFj842hkZpSPt2lijHPLFTgxNE</string>
     <string name="enter_input">Enter Category</string>
     <string name="button_send">Search</string>
 </resources>
