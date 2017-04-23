@@ -47,41 +47,29 @@ public class SwipeActivity extends AppCompatActivity {
 
         ImageView image = (ImageView) findViewById(R.id.imageView1);
         Picasso.with(this).load(restaurants[index].getPictureUrl()).into(image);
-
-        ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
-
-        /**
-         viewGroup.setOnTouchListener(new OnSwipeTouchListener(SwipeActivity.this){
-         public void onSwipeLeft(){
-         index++;
-         Intent intent = SwipeActivity.this.getIntent();
-         intent.putExtra("index", index);
-
-         for (int i = 0; i < restaurants.length; i++){
-         intent.putExtra("restaurant" + i, restaurants[i]);
-         }
-
-         intent.putExtra("amount", restaurants.length);
-
-         startActivity(intent);
-         }
-         public void onSwipeRight(){
-         Intent intent = new Intent(SwipeActivity.this, RestaurantActivity.class);
-         intent.putExtra("restaurant", restaurants[index]);
-
-         startActivity(intent);
-         }
-         });*/
     }
 
     //yes is pressed
     public void yesIsPressed(View view) {
+        Intent intent = new Intent(SwipeActivity.this, RestaurantActivity.class);
+        intent.putExtra("restaurant", restaurants[index]);
 
+        startActivity(intent);
     }
 
     //no is pressed
     public void noIsPressed(View view) {
+        index++;
+        Intent intent = SwipeActivity.this.getIntent();
+        intent.putExtra("index", index);
 
+        for (int i = 0; i < restaurants.length; i++){
+            intent.putExtra("restaurant" + i, restaurants[i]);
+        }
+
+        intent.putExtra("amount", restaurants.length);
+
+        startActivity(intent);
     }
 }
 
