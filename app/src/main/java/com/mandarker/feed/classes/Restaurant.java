@@ -150,7 +150,13 @@ public class Restaurant implements Parcelable {
         System.out.println(pictureUrl);
         this.pictureUrl = pictureUrl + "?tab=food";
         System.out.println(pictureUrl);
-        ArrayList<String> images = RestaurantImageParser.getPictures(pictureUrl);
+
+        try {
+            ArrayList<String> images = RestaurantImageParser.getPictures(pictureUrl);
+        }
+        catch (Exception e){
+            e.getStackTrace();
+        }
 
         for (int i = 0; i < 4; i++){
             if (images.get(i) != null && !images.get(i).equals(""))

@@ -24,9 +24,7 @@ public class RestaurantActivity extends AppCompatActivity {
             restaurant = bundle.getParcelable("restaurant");
         }
         */
-
-        ImageView image = (ImageView) findViewById(R.id.imageView1);
-        Picasso.with(this).load(restaurant.getImages().get(0)).into(image);
+        
         image = (ImageView) findViewById(R.id.imageView2);
         Picasso.with(this).load(restaurant.getImages().get(1)).into(image);
         image = (ImageView) findViewById(R.id.imageView3);
