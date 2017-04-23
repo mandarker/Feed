@@ -5,6 +5,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
 import android.widget.TextView;
+import android.widget.EditText;
 
 import com.mandarker.feed.classes.OnSwipeTouchListener;
 import com.mandarker.feed.classes.Restaurant;
@@ -38,6 +39,11 @@ public class SwipeActivity extends AppCompatActivity {
             }
             public void onSwipeRight(){
                 index++;
+
+                Intent intent = new Intent(SwipeActivity.this, RestaurantActivity.class);
+                intent.putExtra("restaurant", restaurants[index]);
+
+                startActivity(intent);
             }
         });
 
