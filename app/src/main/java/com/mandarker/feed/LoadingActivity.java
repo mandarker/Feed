@@ -5,8 +5,12 @@ import android.location.Location;
 import android.location.LocationListener;
 import android.location.LocationManager;
 import android.os.AsyncTask;
+import android.os.Handler;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.view.animation.AlphaAnimation;
+import android.view.animation.Animation;
+import android.widget.TextView;
 
 import com.mandarker.feed.classes.Restaurant;
 import com.mandarker.feed.classes.RestaurantImageParser;
@@ -37,18 +41,101 @@ public class LoadingActivity extends AppCompatActivity {
     int numOfResponse;
     RestaurantImageParser imgParser;
 
+
+    //fade stuff
+    Handler handler;
+    TextView mSwitcher;
+
+    Animation in;
+    Animation out;
+
+    int fadeCount;
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
 
+        //fade in fade out text on loading screen
+        fadeCount = 0;
 
+        handler = new Handler();
+
+        mSwitcher = (TextView) findViewById(R.id.textView3);
+        mSwitcher.setText("old text");
+
+        in = new AlphaAnimation(0.0f, 1.0f);
+        in.setDuration(1500);
+
+        out = new AlphaAnimation(1.0f, 0.0f);
+        out.setDuration(1500);
+        out.setAnimationListener(new Animation.AnimationListener() {
+
+            @Override
+            public void onAnimationEnd(Animation animation) {
+                fadeCount++;
+                if (fadeCount == 3){
+                    mSwitcher.setText("");
+                    Intent i = new Intent(getApplication() ,  SwipeActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    if (fadeCount == 1) {
+                        mSwitcher.setText("Preparing selection");
+                    } else {
+                        mSwitcher.setText("Please wait...");
+                    }
+
+                    mSwitcher.startAnimation(in);
+                    handler.postDelayed(mFadeOut, 1500);
+                }
+            }
+
+            @Override
+            public void onAnimationRepeat(Animation arg0) {
+                // TODO Auto-generated method stub
+
+            }
+
+            @Override
+            public void onAnimationStart(Animation arg0) {
+                // TODO Auto-generated method stub
+
+            }
+        });
+
+        //mSwitcher.startAnimation(out);
+        mSwitcher.setText("Please wait...");
+        mSwitcher.startAnimation(in);
+
+       /*
+        mSwitcher.startAnimation(out);
+        mSwitcher.setText("Text 2.");
+        mSwitcher.startAnimation(in);
+        */
+
+        handler.postDelayed(mFadeOut, 1500);
+
+        //before stuff
         restaurants = new Restaurant[40];
 
         new FetchData().execute();
     }
-    
+
+    //fade in out
+    private Runnable mFadeOut =new Runnable(){
+
+        @Override
+        public void run() {
+            //Speed up the last fade-out so that the Activity opens faster
+            if (fadeCount == 2){
+                out.setDuration(1500);
+            }
+            mSwitcher.startAnimation(out);
+        }
+    };
 
     class FetchData extends AsyncTask<String,String,String> {
 
@@ -92,24 +179,20 @@ public class LoadingActivity extends AppCompatActivity {
                    temp.setName(businessList.get(i).name());
                    temp.setPhone(businessList.get(i).displayPhone());
                    temp.setRating((float)(double)businessList.get(i).rating());
-                   temp.setLocation(businessList.get(i).location().address().get(0), businessList.get(i).location().city(), businessList.get(i).location().city(), businessList.get(i).location().postalCode());
-                    temp.setPictureUrl(businessList.get(i).imageUrl()); //temp.setPictureUrl(imgParser.getOriginal(businessList.get(i).imageUrl()));
-                    System.out.println("image printed");
-                    String url = businessList.get(i).url();
-/*
+                   temp.setLocation(businessList.get(i).location().address().get(0), businessList.get(i).location().city(), businessList.get(i).location().city(), businessList.get(i).location().postalCode());temp.setPictureUrl(businessList.get(i).imageUrl()); //temp.setPictureUrl(imgParser.getOriginal(businessList.get(i).imageUrl()));
+                    /* String url = businessList.get(i).url();
+
                     for (int j = 0; j < url.length(); j++){
                         if (url.charAt(j) == '?')
                             url = url.substring(0, j);
                     }
 
-                    temp.setUrl(url);
-*/
+                    //temp.setUrl(url);
+                    */
                    restaurants[i] = temp;
 
                    intent.putExtra("restaurant" + i, restaurants[i]);
                 }
-
-                System.out.println(businessList.get(0).url());
 
                 intent.putExtra("amount", numOfResponse);
 

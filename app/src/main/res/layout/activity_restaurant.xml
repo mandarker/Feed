@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mandarker.feed.RestaurantActivity"
-    android:background="#ff7300">
+    android:background="@drawable/loadingscreen">
+    <!--android:background="#ff7300"-->
 
     <LinearLayout
         android:layout_width="0dp"
@@ -44,80 +45,73 @@
             <TextView
                 android:id="@+id/name"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:text="TextView"
                 android:textAlignment="center"
-                android:textSize="36sp" />
+                android:textColor="#FFFFFF"
+                android:textSize="36sp"
+                android:textStyle="bold" />
 
-            //2nd row
-
-            <LinearLayout
-                android:id="@+id/row2"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                tools:layout_editor_absoluteY="519dp">
-
-                //price
-
-                //distance
-
-                //closed or open
-
-            </LinearLayout>
-
-            //3th row
 
             <LinearLayout
-                android:id="@+id/row3"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:orientation="horizontal"
-                app:layout_constraintHorizontal_bias="0.502"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                tools:layout_editor_absoluteY="598dp">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                //ratings
+                <TextView
+                    android:id="@+id/textView7"
+                    android:layout_width="wrap_content"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:text="Rating:"
+                    android:textAlignment="textStart"
+                    android:textColor="#FFFFFF"
+                    android:textSize="24sp" />
 
                 <TextView
                     android:id="@+id/rating"
-                    android:layout_width="match_parent"
+                    android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:layout_weight="1"
                     android:text="TextView"
+                    android:textAlignment="textStart"
+                    android:textColor="#FFFFFF"
                     android:textSize="24sp" />
-
-                //reviewCount
-
             </LinearLayout>
 
-            //4th row
-            //address
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="Address:"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/address"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="123dp"
                 android:layout_weight="1"
                 android:text="TextView"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
-            //5th row
-            //phone
+            <TextView
+                android:id="@+id/textView10"
+                android:layout_width="match_parent"
+                android:layout_height="36dp"
+                android:text="Phone:"
+                android:textColor="#FFFFFF"
+                android:textSize="24sp" />
 
             <TextView
                 android:id="@+id/phone"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="157dp"
                 android:layout_weight="1"
                 android:text="TextView"
+                android:textColor="#FFFFFF"
                 android:textSize="24sp" />
 
         </LinearLayout>
