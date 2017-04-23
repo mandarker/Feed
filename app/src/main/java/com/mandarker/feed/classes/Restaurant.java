@@ -3,6 +3,8 @@ package com.mandarker.feed.classes;
 import android.os.Parcel;
 import android.os.Parcelable;
 
+import java.util.List;
+
 /**
  * Created by mandarker on 4/22/2017.
  */
@@ -18,6 +20,7 @@ public class Restaurant implements Parcelable {
     private String location;
     private float distance;
     private String url;
+    private List<String> images;
 
     public Restaurant(String name, float rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
         this.name = name;
@@ -166,5 +169,20 @@ public class Restaurant implements Parcelable {
 
     public void setUrl(String url) {
         this.url = url;
+
+        List<String> images = RestaurantImageParser.getPictures(url);
+
+        for (int i = 0; i < 4; i++){
+            if (images.get(i) != null && !images.get(i).equals(""))
+            this.images.add(images.get(i));
+        }
+    }
+
+    public List<String> getImages() {
+        return images;
+    }
+
+    public void setImages(List<String> images) {
+        this.images = images;
     }
 }

@@ -27,6 +27,8 @@ public class MainActivity extends AppCompatActivity {
         String category = editText.getText().toString();
 
 
+
+
         //start new activity
         startActivity(intent);
     }

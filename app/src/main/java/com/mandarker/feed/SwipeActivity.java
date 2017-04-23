@@ -50,7 +50,6 @@ public class SwipeActivity extends AppCompatActivity {
                 index++;
             }
             public void onSwipeRight(){
-
                 Intent intent = new Intent(SwipeActivity.this, RestaurantActivity.class);
                 intent.putExtra("restaurant", restaurant[index]);
 
