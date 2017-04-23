@@ -42,8 +42,10 @@ public class SwipeActivity extends AppCompatActivity {
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null) {
             restaurants = new Restaurant[bundle.getInt("amount")];
-            for (int i = 0; i < restaurants.length; i++)
+            for (int i = 0; i < restaurants.length; i++) {
                 restaurants[i] = bundle.getParcelable("restaurant" + i);
+                System.out.println(restaurants[i].getPictureUrl());
+            }
             index = bundle.getInt("index");
         }
 
