@@ -22,6 +22,10 @@ public class Restaurant implements Parcelable {
     private String url;
     private List<String> images;
 
+    public Restaurant(){
+
+    }
+
     public Restaurant(String name, float rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
         this.name = name;
         this.rating = rating;

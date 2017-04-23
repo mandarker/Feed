@@ -38,6 +38,8 @@ public class LoadingActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_loading);
 
+        restaurants = new Restaurant[40];
+
         new FetchData().execute();
     }
 
@@ -66,8 +68,15 @@ public class LoadingActivity extends AppCompatActivity {
             if (response != null) {
                 businessList = response.body().businesses();
                 numOfResponse = businessList.size();
-                restaurants = new Restaurant[numOfResponse];
-                restaurants[0].setName(businessList.get(0).name());
+                //restaurants = new Restaurant[numOfResponse];
+                Restaurant temp;
+                for (int i = 0; i < numOfResponse; i++) {
+                    temp = new Restaurant();
+                    temp.setName(businessList.get(i).name());
+                    restaurants[i] = temp;
+                    System.out.println(restaurants[i].getName());
+                }
+
                 System.out.println(restaurants[0].getName());
                 /*
                 for (int i = 0; i < numOfResponse; i++){
