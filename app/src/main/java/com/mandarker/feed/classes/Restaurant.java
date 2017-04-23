@@ -145,7 +145,6 @@ public class Restaurant implements Parcelable {
 
     public void setUrl(String url) {
         this.url = url;
-
     }
 
     public String getPictureUrl(){
