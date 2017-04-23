@@ -10,7 +10,7 @@ import android.os.Parcelable;
 public class Restaurant implements Parcelable {
 
     private String name;
-    private int rating;
+    private float rating;
     private int reviewCount;
     private String price;
     private String phone;
@@ -19,7 +19,7 @@ public class Restaurant implements Parcelable {
     private float distance;
     private String url;
 
-    public Restaurant(String name, int rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
+    public Restaurant(String name, float rating, int reviewCount, String price, String phone, boolean isClosed, String location, float distance, String url) {
         this.name = name;
         this.rating = rating;
         this.reviewCount = reviewCount;
@@ -35,20 +35,20 @@ public class Restaurant implements Parcelable {
         String[] strings = new String[5];
         in.readStringArray(strings);
 
-        int[] integers = new int[2];
-        in.readIntArray(integers);
+        float[] floats = new float[2];
+        in.readFloatArray(floats);
 
         boolean[] booleans = new boolean[1];
         in.readBooleanArray(booleans);
 
         name = strings[0];
-        rating = integers[0];
-        reviewCount = integers[1];
+        rating = floats[0];
+        reviewCount = in.readInt();
         price = strings[1];
         phone = strings[2];
         isClosed = booleans[0];
         location = strings[3];
-        distance = in.readFloat();
+        distance = floats[1];
         url = strings[4];
     }
 
@@ -72,9 +72,9 @@ public class Restaurant implements Parcelable {
     @Override
     public void writeToParcel(Parcel parcel, int i) {
         parcel.writeStringArray(new String[]{this.name, this.price, this.phone, this.location, this.url});
-        parcel.writeIntArray(new int[]{this.rating, this.reviewCount});
+        parcel.writeInt(this.reviewCount);
         parcel.writeBooleanArray(new boolean[]{this.isClosed});
-        parcel.writeFloat(this.distance);
+        parcel.writeFloatArray(new float[]{this.rating, this.distance});
     }
 
     public String getName() {
@@ -85,11 +85,11 @@ public class Restaurant implements Parcelable {
         this.name = name;
     }
 
-    public int getRating() {
+    public float getRating() {
         return rating;
     }
 
-    public void setRating(int rating) {
+    public void setRating(float rating) {
         this.rating = rating;
     }
 
