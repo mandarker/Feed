@@ -44,12 +44,8 @@ public class SwipeActivity extends AppCompatActivity {
             index = bundle.getInt("index");
         }
 
-        System.out.println("hello2");
-        System.out.println(restaurants[index].getImages().get(0));
-        System.out.println("hello");
-
         ImageView image = (ImageView) findViewById(R.id.imageView1);
-        Picasso.with(this).load(restaurants[index].getImages().get(0)).into(image);
+        Picasso.with(this).load(restaurants[index].getPictureUrl()).into(image);
 
         ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
 
