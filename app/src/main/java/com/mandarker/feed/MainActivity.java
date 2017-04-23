@@ -11,8 +11,6 @@ import com.mandarker.feed.classes.OnSwipeTouchListener;
 
 public class MainActivity extends AppCompatActivity {
 
-    //test
-    public static final String EXTRA_MESSAGE = "com.example.myfirstapp.MESSAGE";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,14 +21,15 @@ public class MainActivity extends AppCompatActivity {
     /** Called when the user taps the Enter button in the home scree */
     public void searchPressed(View view) {
         //creates new intent to create new activity
-        Intent intent = new Intent(MainActivity.this, SwipeActivity.class);
+        //Intent intent = new Intent(MainActivity.this, SwipeActivity.class);
+
+        //test
+        Intent intent = new Intent(this, SwipeActivity.class);
 
         //Stores category input(searchEditText) into a string variable(category)
         EditText editText = (EditText) findViewById(R.id.searchEditText);
         String category = editText.getText().toString();
 
-        //test
-        intent.putExtra(EXTRA_MESSAGE, category);
 
         //start new activity
         startActivity(intent);

@@ -28,11 +28,11 @@ public class SwipeActivity extends AppCompatActivity {
     Intent intent = getIntent();
     YelpFusionApiFactory apiFactory = new YelpFusionApiFactory();
     YelpFusionApi yelpFusionApi;
-
+    ArrayList<Business> businessList;
     Map<String, String> params;
     Call<SearchResponse> call;
     SearchResponse searchResponse;
-    ArrayList<Business> businessList;
+
     int numOfResponse;
 
     Restaurant[] restaurants;
@@ -72,6 +72,7 @@ public class SwipeActivity extends AppCompatActivity {
     }
 
     public class FetchData extends AsyncTask<String, String, String> {
+
         @Override
         protected String doInBackground(String... strings) {
             call = yelpFusionApi.getBusinessSearch(params);
@@ -92,6 +93,5 @@ public class SwipeActivity extends AppCompatActivity {
             return null;
         }
     }
-
 }
 
