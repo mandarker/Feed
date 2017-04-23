@@ -1,10 +1,13 @@
 package com.mandarker.feed.classes;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by mandarker on 4/22/2017.
  */
 
-public class Restaurant {
+public class Restaurant implements Parcelable {
 
     private String name;
     private int rating;
@@ -26,6 +29,52 @@ public class Restaurant {
         this.location = location;
         this.distance = distance;
         this.url = url;
+    }
+
+    protected Restaurant(Parcel in) {
+        String[] strings = new String[5];
+        in.readStringArray(strings);
+
+        int[] integers = new int[2];
+        in.readIntArray(integers);
+
+        boolean[] booleans = new boolean[1];
+        in.readBooleanArray(booleans);
+
+        name = strings[0];
+        rating = integers[0];
+        reviewCount = integers[1];
+        price = strings[1];
+        phone = strings[2];
+        isClosed = booleans[0];
+        location = strings[3];
+        distance = in.readFloat();
+        url = strings[4];
+    }
+
+    public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
+        @Override
+        public Restaurant createFromParcel(Parcel in) {
+            return new Restaurant(in);
+        }
+
+        @Override
+        public Restaurant[] newArray(int size) {
+            return new Restaurant[size];
+        }
+    };
+
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel parcel, int i) {
+        parcel.writeStringArray(new String[]{this.name, this.price, this.phone, this.location, this.url});
+        parcel.writeIntArray(new int[]{this.rating, this.reviewCount});
+        parcel.writeBooleanArray(new boolean[]{this.isClosed});
+        parcel.writeFloat(this.distance);
     }
 
     public String getName() {
