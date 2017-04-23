@@ -35,6 +35,16 @@
             android:orientation="horizontal">
 
             <Button
+                android:id="@+id/no"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:background="#ff0202"
+                android:onClick="noIsPressed"
+                android:text="NO"
+                android:textSize="24sp" />
+
+            <Button
                 android:id="@+id/yes"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
@@ -44,15 +54,6 @@
                 android:text="YES"
                 android:textSize="24sp" />
 
-            <Button
-                android:id="@+id/no"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_weight="1"
-                android:background="#ff0202"
-                android:onClick="noIsPressed"
-                android:text="NO"
-                android:textSize="24sp" />
         </LinearLayout>
 
     </LinearLayout>
