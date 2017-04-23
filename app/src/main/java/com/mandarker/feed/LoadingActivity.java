@@ -36,10 +36,6 @@ public class LoadingActivity extends AppCompatActivity {
     ArrayList<Business> businessList;
     int numOfResponse;
     RestaurantImageParser imgParser;
-    LocationManager lm = (LocationManager)getSystemService(this.LOCATION_SERVICE);
-    Location location = lm.getLastKnownLocation(LocationManager.GPS_PROVIDER);
-    double longitude = location.getLongitude();
-    double latitude = location.getLatitude();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -96,24 +92,20 @@ public class LoadingActivity extends AppCompatActivity {
                    temp.setName(businessList.get(i).name());
                    temp.setPhone(businessList.get(i).displayPhone());
                    temp.setRating((float)(double)businessList.get(i).rating());
-                   temp.setLocation(businessList.get(i).location().address().get(0), businessList.get(i).location().city(), businessList.get(i).location().city(), businessList.get(i).location().postalCode());
-                    temp.setPictureUrl(businessList.get(i).imageUrl()); //temp.setPictureUrl(imgParser.getOriginal(businessList.get(i).imageUrl()));
-                    System.out.println("image printed");
-                    String url = businessList.get(i).url();
-/*
+                   temp.setLocation(businessList.get(i).location().address().get(0), businessList.get(i).location().city(), businessList.get(i).location().city(), businessList.get(i).location().postalCode());temp.setPictureUrl(businessList.get(i).imageUrl()); //temp.setPictureUrl(imgParser.getOriginal(businessList.get(i).imageUrl()));
+                    /* String url = businessList.get(i).url();
+
                     for (int j = 0; j < url.length(); j++){
                         if (url.charAt(j) == '?')
                             url = url.substring(0, j);
                     }
 
-                    temp.setUrl(url);
-*/
+                    //temp.setUrl(url);
+                    */
                    restaurants[i] = temp;
 
                    intent.putExtra("restaurant" + i, restaurants[i]);
                 }
-
-                System.out.println(businessList.get(0).url());
 
                 intent.putExtra("amount", numOfResponse);
 

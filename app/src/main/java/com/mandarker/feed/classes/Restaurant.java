@@ -18,26 +18,27 @@ public class Restaurant implements Parcelable {
     private String location;
     private String pictureUrl;
 
-
     public Restaurant(){
 
     }
 
-    public Restaurant(String name, float rating, int reviewCount, String phone, String location, float distance) {
+    public Restaurant(String name, float rating, String phone, String location, String pictureUrl) {
         this.name = name;
         this.rating = rating;
         this.phone = phone;
         this.location = location;
+        this.pictureUrl = pictureUrl;
     }
 
     protected Restaurant(Parcel in) {
-        String[] strings = new String[3];
+        String[] strings = new String[4];
         in.readStringArray(strings);
 
         name = strings[0];
         rating = in.readFloat();
         phone = strings[1];
         location = strings[2];
+        pictureUrl = strings[3];
     }
 
     public static final Creator<Restaurant> CREATOR = new Creator<Restaurant>() {
@@ -59,7 +60,7 @@ public class Restaurant implements Parcelable {
 
     @Override
     public void writeToParcel(Parcel parcel, int i) {
-        parcel.writeStringArray(new String[]{this.name, this.phone, this.location});
+        parcel.writeStringArray(new String[]{this.name, this.phone, this.location, this.pictureUrl});
         parcel.writeFloat(this.rating);
     }
 
@@ -110,8 +111,6 @@ public class Restaurant implements Parcelable {
         
         this.location = location;
     }
-
-
 
     public String getPictureUrl(){
         return pictureUrl;
