@@ -40,4 +40,5 @@ dependencies {
     compile 'io.github.ranga543:yelp-fusion-client:0.1.2'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
     testCompile 'junit:junit:4.12'
+    compile 'com.google.android.gms:play-services-maps:10.2.1'
 }
