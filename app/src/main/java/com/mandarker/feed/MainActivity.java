@@ -20,11 +20,7 @@ public class MainActivity extends AppCompatActivity {
 
     /** Called when the user taps the Enter button in the home scree */
     public void searchPressed(View view) {
-        //creates new intent to create new activity
-        //Intent intent = new Intent(MainActivity.this, SwipeActivity.class);
-
-        //test
-        Intent intent = new Intent(this, SwipeActivity.class);
+        Intent intent = new Intent(this, LoadingActivity.class);
 
         //Stores category input(searchEditText) into a string variable(category)
         EditText editText = (EditText) findViewById(R.id.searchEditText);
