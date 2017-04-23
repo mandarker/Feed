@@ -5,8 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context="com.mandarker.feed.MainActivity"
-
-    android:background="#ff7300">
+    android:background="@drawable/loadingscreen">
+    <!--android:background="#ff7300"-->
 
     <EditText
         android:id="@+id/searchEditText"

@@ -47,7 +47,10 @@ public class LoadingActivity extends AppCompatActivity {
         setContentView(R.layout.activity_loading);
 
 
+        //fade in fade out text on loading screen
 
+
+        //before stuff
         restaurants = new Restaurant[40];
 
         new FetchData().execute();
