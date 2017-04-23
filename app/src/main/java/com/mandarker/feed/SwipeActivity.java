@@ -6,11 +6,13 @@ import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.EditText;
 
 import com.mandarker.feed.classes.OnSwipeTouchListener;
 import com.mandarker.feed.classes.Restaurant;
+import com.squareup.picasso.Picasso;
 import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
 import com.yelp.fusion.client.models.Business;
@@ -43,6 +45,17 @@ public class SwipeActivity extends AppCompatActivity {
                 restaurants[i] = bundle.getParcelable("restaurant" + i);
             index = bundle.getInt("index");
         }
+
+        ImageView image = (ImageView) findViewById(R.id.imageView1);
+        Picasso.with(this).load(restaurants[index].getImages().get(0)).into(image);
+        TextView text = (TextView) findViewById(R.id.name);
+        text.setText(restaurants[index].getName());
+        text = (TextView) findViewById(R.id.price);
+        text.setText(restaurants[index].getPrice());
+        text = (TextView) findViewById(R.id.distance);
+        text.setText("" + restaurants[index].getDistance());
+        text = (TextView) findViewById(R.id.rating);
+        text.setText("" + restaurants[index].getRating());
 
         ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
 
