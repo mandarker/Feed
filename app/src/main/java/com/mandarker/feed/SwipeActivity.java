@@ -1,8 +1,10 @@
 package com.mandarker.feed;
 
+import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.mandarker.feed.classes.OnSwipeTouchListener;
 import com.mandarker.feed.classes.Restaurant;
@@ -10,6 +12,7 @@ import com.yelp.fusion.client.connection.YelpFusionApi;
 import com.yelp.fusion.client.connection.YelpFusionApiFactory;
 
 public class SwipeActivity extends AppCompatActivity {
+    Intent intent = getIntent();
     YelpFusionApiFactory apiFactory = new YelpFusionApiFactory();
     YelpFusionApi yelpFusionApi;
 
@@ -19,7 +22,7 @@ public class SwipeActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_swipeactivity);
         try {
             yelpFusionApi = apiFactory.createAPI(getString(R.string.appID),getString(R.string.appSecret));
         }
@@ -37,6 +40,7 @@ public class SwipeActivity extends AppCompatActivity {
                 index++;
             }
         });
+
     }
 
 }
