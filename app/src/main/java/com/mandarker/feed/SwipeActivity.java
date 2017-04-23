@@ -27,31 +27,42 @@ import retrofit2.Response;
 public class SwipeActivity extends AppCompatActivity {
 
     private int index;
-    Restaurant[] restaurant;
+    Restaurant[] restaurants;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_swipeactivity);
 
+        index = 0;
+
         Bundle bundle = this.getIntent().getExtras();
         if (bundle != null){
-            restaurant = new Restaurant[bundle.getInt("amount")];
-            for (int i = 0; i < restaurant.length; i++)
-                restaurant[i] = bundle.getParcelable("restaurant" + i);
+            restaurants = new Restaurant[bundle.getInt("amount")];
+            for (int i = 0; i < restaurants.length; i++)
+                restaurants[i] = bundle.getParcelable("restaurant" + i);
+            index = bundle.getInt("index");
         }
-
-        index = 0;
 
         ViewGroup viewGroup = (ViewGroup) ((ViewGroup) this.findViewById(android.R.id.content)).getChildAt(0);
 
         viewGroup.setOnTouchListener(new OnSwipeTouchListener(SwipeActivity.this){
             public void onSwipeLeft(){
                 index++;
+                Intent intent = SwipeActivity.this.getIntent();
+                intent.putExtra("index", index);
+
+                for (int i = 0; i < restaurants.length; i++){
+                    intent.putExtra("restaurant" + i, restaurants[i]);
+                }
+
+                intent.putExtra("amount", restaurants.length);
+
+                startActivity(intent);
             }
             public void onSwipeRight(){
                 Intent intent = new Intent(SwipeActivity.this, RestaurantActivity.class);
-                intent.putExtra("restaurant", restaurant[index]);
+                intent.putExtra("restaurant", restaurants[index]);
 
                 startActivity(intent);
             }
